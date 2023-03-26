@@ -6,8 +6,10 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <qcheckbox.h>
+#include <qlistwidget.h>
 #include <iostream>
 #include <qformlayout.h>
+#include <qstackedlayout.h>
 
 using namespace std;
 
@@ -135,7 +137,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     QVector<QString> nameVector{"姓名:","年龄:","手机号码:", "邮箱:", "地址"};
 
-
     for(int i = 0; i < nameVector.count(); ++i) {
         QLineEdit* edit = new QLineEdit();
         edit->setMinimumWidth(300);
@@ -144,6 +145,44 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     vBoxLayout->addLayout(formLayout);
+
+    //QStackedLayout
+    QHBoxLayout* myStackHBoxLayout = new QHBoxLayout();
+
+    QListWidget* listWidget = new QListWidget();
+    QStackedLayout* stackedLayout = new QStackedLayout();
+
+    QVector<QString> cityVector{"北京","上海","天津","重庆","深圳","厦门"};
+
+    foreach (const QString item, cityVector) {
+        listWidget->addItem(item);
+        QWidget* containerWidget = new QWidget();
+        containerWidget->setMinimumSize(200,100);
+        containerWidget->setStyleSheet("background-color:#ffff00;");
+
+        QVBoxLayout *vBoxLayout = new QVBoxLayout();
+        containerWidget->setLayout(vBoxLayout);
+
+        QLabel* label = new QLabel();
+        label->setText(item);
+        label->setMinimumSize(80,40);
+        vBoxLayout->addWidget(label);
+
+        QPushButton* button = new QPushButton();
+        button->setText(item);
+        button->setMinimumSize(60,40);
+        button->setStyleSheet("background-color:#ff00ff;");
+        vBoxLayout->addWidget(button);
+
+        stackedLayout->addWidget(containerWidget);
+    }
+
+    myStackHBoxLayout->addWidget(listWidget,1);
+    myStackHBoxLayout->addLayout(stackedLayout,4);
+
+    vBoxLayout->addLayout(myStackHBoxLayout);
+
+    QObject::connect(listWidget, &QListWidget::currentRowChanged, stackedLayout, &QStackedLayout::setCurrentIndex);
 
     ui->centralwidget->setLayout(vBoxLayout);
 }
