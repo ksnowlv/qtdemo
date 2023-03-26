@@ -7,6 +7,8 @@
 #include <QLineEdit>
 #include <qcheckbox.h>
 #include <iostream>
+#include <qformlayout.h>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -122,6 +124,26 @@ MainWindow::MainWindow(QWidget *parent)
     gridLayout->addWidget(loginButton,3, 1, 1, 3, Qt::AlignLeft|Qt::AlignCenter);
 
     vBoxLayout->addLayout(gridLayout);
+
+
+    //QFormLayout
+    QFormLayout* formLayout = new QFormLayout();
+    formLayout->setRowWrapPolicy(QFormLayout::DontWrapRows);
+    formLayout->setAlignment(Qt::AlignLeft);
+    formLayout->setHorizontalSpacing(10);
+    formLayout->setVerticalSpacing(5);
+
+    QVector<QString> nameVector{"姓名:","年龄:","手机号码:", "邮箱:", "地址"};
+
+
+    for(int i = 0; i < nameVector.count(); ++i) {
+        QLineEdit* edit = new QLineEdit();
+        edit->setMinimumWidth(300);
+        edit->setMinimumHeight(30);
+        formLayout->addRow(nameVector[i], edit);
+    }
+
+    vBoxLayout->addLayout(formLayout);
 
     ui->centralwidget->setLayout(vBoxLayout);
 }
