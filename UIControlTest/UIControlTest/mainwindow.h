@@ -6,7 +6,6 @@
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 class QListWidget;
-class QHBoxLayout;
 
 QT_END_NAMESPACE
 

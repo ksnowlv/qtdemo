@@ -162,11 +162,45 @@ void MainWindow::showTreeWidget() {
 }
 
 void MainWindow::initTableWidget() {
-    QHBoxLayout* hBoxlayout = new QHBoxLayout();
+    QVBoxLayout* mainlayout = new QVBoxLayout();
 
     tableContainerWidget = new QWidget();
-    tableContainerWidget->setLayout(hBoxlayout);
+    tableContainerWidget->setLayout(mainlayout);
     tableContainerWidget->setGeometry(this->geometry());
+
+    QPushButton* button = new QPushButton();
+    button->setText("退出");
+    connect(button,
+            &QPushButton::clicked,
+            this,
+            [&]() {
+                tableContainerWidget->hide();
+                this->show();}
+    );
+
+    mainlayout->addWidget(button,1,Qt::AlignRight);
+
+    QTabWidget* tabWidget = new QTabWidget();
+    mainlayout->addWidget(tabWidget);
+
+    QVector<QString> tabNames{"窗口选项1", "窗口选项2", "窗口选项3", "窗口选项4", "窗口选项5"};
+
+    for (int i = 0; i < tabNames.count(); ++i) {
+
+        QWidget *subWidget = new QWidget();
+        subWidget->setStyleSheet("background-color:#ff00ff;");
+        tabWidget->addTab(subWidget, tabNames[i]);
+        QVBoxLayout* subMainLayout = new QVBoxLayout();
+        subWidget->setLayout(subMainLayout);
+
+        QLabel* label = new QLabel();
+        label->setText(tabNames[i]);
+        subMainLayout->addWidget(label, 0, Qt::AlignCenter);
+
+        QPushButton* button = new QPushButton();
+        button->setText(tabNames[i]);
+        subMainLayout->addWidget(button);
+    }
 }
 
 void MainWindow::showTableWidget() {
