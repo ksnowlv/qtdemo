@@ -26,12 +26,31 @@ private slots:
     void button_groupbox_clicked();
 
 private:
+
+    void initStackedWidget();
+    void showStackedWidget();
+
     void initListWidget();
     void showListWidget();
+
+    void initTreeWidget();
+    void showTreeWidget();
+
+    void initTableWidget();
+    void showTableWidget();
+
+    void initGroupBoxContainerWidget();
+    void showGroupBoxContainerWidget();
+
 private:
     Ui::MainWindow *ui;
 
+    QWidget* stackedContainerWidget;
     QWidget* listContainerWidget;
+    QWidget* treeContainerWidget;
+    QWidget* tableContainerWidget;
+    QWidget* groupBoxContainerWidget;
+
 
 };
 #endif // MAINWINDOW_H
