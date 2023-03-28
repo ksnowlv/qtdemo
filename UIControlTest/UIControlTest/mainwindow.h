@@ -44,7 +44,6 @@ private:
 
     void initTabWidget();
     void showTabWidget();
-
 private:
     Ui::MainWindow *ui;
 
@@ -54,6 +53,8 @@ private:
     QWidget* tableContainerWidget;
     QWidget* groupBoxContainerWidget;
     QWidget* tabContainerWidget;
+
+    QMenu* treeWidgetMenu;
 
 
 };

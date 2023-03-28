@@ -196,12 +196,54 @@ void MainWindow::initTreeWidget() {
 
     QTreeWidget* treeWidget = new QTreeWidget();
     mainLayout->addWidget(treeWidget,6, Qt::AlignHCenter);
-    treeWidget->setHeaderLabel("省份");
-    treeWidget->setMinimumWidth(350);
+    treeWidget->setHeaderLabels({"省份", "描述"});
+    treeWidget->setMinimumWidth(500);
+    treeWidget->setColumnWidth(0, 170);
+    treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    connect(treeWidget,
+            &QTreeWidget::itemClicked,
+            this,
+            [=](QTreeWidgetItem* item, int count) {
+            cout<<"item text:"
+               <<item->text(0).toStdString()
+               <<endl;
+
+        });
+
+    treeWidgetMenu = new QMenu(treeWidget);
+    QAction* copyAction = treeWidgetMenu->addAction("拷贝");
+    connect(copyAction,
+            &QAction::triggered,
+            this,
+            [=]() {
+
+          cout<<"拷贝被点击"<<endl;
+
+          QMessageBox::StandardButton button = QMessageBox::information(this, "消息框", "文本已复制!!!",
+                                      QMessageBox::Ok,QMessageBox::NoButton);
+
+          if(button == QMessageBox::Ok) {
+              cout<<"QMessageBox::Ok 被点击"<<endl;
+          }
+    });
+
+    treeWidgetMenu->addAction("删除");
+
+    connect(treeWidget,
+            &QTreeWidget::customContextMenuRequested,
+            this,
+            [=](const QPoint &pos){
+        treeWidgetMenu->exec(treeWidget->mapToGlobal(pos));
+    });
 
     QVector<ProvinceInfo*> provinceInfoVector;
 
     QVector<QString> cityVector{"北京", "天津", "上海", "重庆"};
+    QVector<QString> cityDescritipnVector{"北京（Beijing），简称“京”，古称燕京、北平，是中华人民共和国首都、直辖市、国家中心城市、超大城市，国务院批复确定的中国政治中心、文化中心、国际交往中心、科技创新中心， [1]  中国历史文化名城和古都之一。 [145]  截至2020年，北京市下辖16个区，总面积16410.54平方千米。 [83]  2022年末，北京市常住人口2184.3万人",
+                                          "天津市，简称“津”，别称津沽、津门，是中华人民共和国省级行政区、直辖市、国家中心城市、超大城市，全国先进制造研发基地、北方国际航运核心区、金融创新运营示范区、改革开放先行区。 [161]  中国北方对外开放的门户，中国北方的航运中心、物流中心和现代制造业基地 [105]  ，环渤海地区的经济中心 [1-2]  ，国际消费中心城市 [91]  和区域商贸中心城市 [162]  ，国际性综合交通枢纽 [163]  ，中国国际航空物流中心",
+                                          "上海，简称“沪”或“申”，是中华人民共和国直辖市、国家中心城市、超大城市、上海大都市圈核心城市，中华人民共和国国务院批复确定的中国国际经济、金融、贸易、航运、科技创新中心，中国历史文化名城之一。 [1]  上海市总面积6340.5平方千米，辖16个区。 [5]  [182]  2022年末，上海市常住人口为2475.89万人",
+                                          "重庆市，简称“渝” [4]  ，别称山城、江城，是中华人民共和国直辖市、国家中心城市、超大城市 [114]  ，国务院批复的国家重要的中心城市之一、长江上游地区经济中心 [1]  ，成渝地区双城经济圈核心城市 [159]  ，国家重要先进制造业中心、西部金融中心、西部国际综合交通枢纽和国际门户枢纽。 [140]  辖38个区县，总面积8.24万平方千米。2022年末常住人口3213.34万人"};
 
     foreach (const QString& city, cityVector) {
         ProvinceInfo* provinceInfo = new ProvinceInfo();
@@ -218,34 +260,37 @@ void MainWindow::initTreeWidget() {
 
         QTreeWidgetItem* subItem = new QTreeWidgetItem(item);
         subItem->setText(0, cityVector[i]);
-        treeWidget->addTopLevelItem(subItem);
         subItem->setCheckState(0,Qt::Unchecked);
     }
 
     ProvinceInfo* provinceInfo = new ProvinceInfo();
     provinceInfo->setProvinceName("河南");
+    provinceInfo->setProvinceDescription("河南省，简称“豫”，中华人民共和国省级行政区，省会郑州市，是全国农产品主产区和重要的矿产资源大省、人口大省、重要的综合交通枢纽和人流、物流、信息流中心、全国农业大省和粮食转化加工大省。 [111]  河南省位于中国中东部、黄河中下游，东接安徽、山东，北接河北、山西，西连陕西，南临湖北，总面积16.7万平方千米");
 
     QVector<QString> HNCityVector{"郑州", "新乡", "焦作", "洛阳", "安阳" ,"洛阳", "周口", "平顶山", "驻马店"};
-
+    QVector<QString> HNCityDescriptionVector{"简称“郑”，史谓“天地之中”，古称商都，今谓绿城，河南省辖地级市、省会、 [144]  特大城市 [216]  、《促进中部地区崛起“十三五”规划》明确支持建设中的国家中心城市",
+                                             "河南省辖地级市，地处河南省北部，南临黄河，与郑州、开封隔河相望；北依太行，与鹤壁、安阳毗邻；西连焦作并与山西接壤；东接油城濮阳并与山东相连，总面积8249平方千米。 [55]  截至2022年，新乡市辖4个市辖区、5个县、1个城乡一体化示范区、2个国家级开发区，代管3个县级市。 [86]  2021年，新乡市常住人口617.1万", "焦作", "洛阳", "安阳" ,"洛阳", "周口", "平顶山", "驻马店"};
     foreach (const QString& city, HNCityVector) {
         provinceInfo->append(CityInfo(city));
     }
 
     QTreeWidgetItem* item = new QTreeWidgetItem();
     item->setText(0, provinceInfo->getProvinceName());
+    item->setText(1, provinceInfo->getProvinceDescription());
+
     treeWidget->addTopLevelItem(item);
     item->setCheckState(0,Qt::Checked);
 
-    foreach (const CityInfo& cityInfo, provinceInfo->getCityInfoVector()) {
+    for (int i = 0; i < HNCityVector.count(); ++i) {
         QTreeWidgetItem* subItem = new QTreeWidgetItem(item);
-        subItem->setText(0, cityInfo.getCityName());
-        treeWidget->addTopLevelItem(subItem);
+        subItem->setText(0, HNCityVector[i]);
+        subItem->setText(1, HNCityDescriptionVector[i]);
+        //subItem->setSizeHint(1, QSize(0, 100));
         subItem->setCheckState(0,Qt::Checked);
 
         for(int i = 0; i < 5; ++i) {
             QTreeWidgetItem* childItem = new QTreeWidgetItem(subItem);
             childItem->setText(0, "区县 " + QString::number(i+1));
-            treeWidget->addTopLevelItem(childItem);
             childItem->setCheckState(0,Qt::Checked);
         }
     }
@@ -297,7 +342,6 @@ void MainWindow::initTableWidget() {
     tableWidget->setRowCount(persons.count());
     tableWidget->setHorizontalHeaderLabels(QStringList() << "姓名" << "地址" << "手机号" << "年龄");
     tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
 
     for(int i = 0; i < persons.count(); ++i) {
 
@@ -431,12 +475,12 @@ void MainWindow::initGroupBoxContainerWidget() {
             cout<<str.toStdString()<<"被点击"<<endl;
             pushButton2->setText(str);
             QMessageBox::StandardButton button = QMessageBox::information(this, "消息框", "你点击了"+ str,
-                                        QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::NoButton);
+                                        QMessageBox::Yes|QMessageBox::No,QMessageBox::NoButton);
 
             if(button == QMessageBox::Yes) {
                 cout<<"QMessageBox::Yes 被点击"<<endl;
-            } else if(button == QMessageBox::Cancel) {
-                cout<<"QMessageBox::Cancel 被点击"<<endl;
+            } else if(button == QMessageBox::No) {
+                cout<<"QMessageBox::No 被点击"<<endl;
             }
       });
     }
