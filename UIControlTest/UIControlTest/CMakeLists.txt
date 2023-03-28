@@ -19,6 +19,10 @@ set(PROJECT_SOURCES
         mainwindow.ui
         person.h
         person.cpp
+        cityinfo.h
+        cityinfo.cpp
+        provinceinfo.h
+        provinceinfo.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

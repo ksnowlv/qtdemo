@@ -3,7 +3,6 @@
 #include <iostream>
 
 #include <qlistwidget.h>
-#include <qtreewidget.h>
 #include <QStackedWidget.h>
 #include <qtablewidget.h>
 #include <qgroupbox.h>
@@ -16,7 +15,12 @@
 #include <qmenu.h>
 #include <qmessagebox.h>
 #include <qtablewidget.h>
+#include <qtreewidget.h>
+
 #include "person.h"
+#include "provinceinfo.h"
+#include "cityinfo.h"
+
 
 using namespace std;
 
@@ -189,6 +193,62 @@ void MainWindow::initTreeWidget() {
     );
 
     mainLayout->addWidget(button, 1 ,Qt::AlignRight);
+
+    QTreeWidget* treeWidget = new QTreeWidget();
+    mainLayout->addWidget(treeWidget,6, Qt::AlignHCenter);
+    treeWidget->setHeaderLabel("省份");
+    treeWidget->setMinimumWidth(350);
+
+    QVector<ProvinceInfo*> provinceInfoVector;
+
+    QVector<QString> cityVector{"北京", "天津", "上海", "重庆"};
+
+    foreach (const QString& city, cityVector) {
+        ProvinceInfo* provinceInfo = new ProvinceInfo();
+        provinceInfo->setProvinceName(city);
+        provinceInfo->append(CityInfo(city));
+        provinceInfoVector.append(provinceInfo);
+    }
+
+    for (int i = 0; i < cityVector.count(); ++i) {
+        QTreeWidgetItem* item = new QTreeWidgetItem();
+        item->setText(0, cityVector[i]);
+        treeWidget->addTopLevelItem(item);
+        item->setCheckState(0,Qt::Unchecked);
+
+        QTreeWidgetItem* subItem = new QTreeWidgetItem(item);
+        subItem->setText(0, cityVector[i]);
+        treeWidget->addTopLevelItem(subItem);
+        subItem->setCheckState(0,Qt::Unchecked);
+    }
+
+    ProvinceInfo* provinceInfo = new ProvinceInfo();
+    provinceInfo->setProvinceName("河南");
+
+    QVector<QString> HNCityVector{"郑州", "新乡", "焦作", "洛阳", "安阳" ,"洛阳", "周口", "平顶山", "驻马店"};
+
+    foreach (const QString& city, HNCityVector) {
+        provinceInfo->append(CityInfo(city));
+    }
+
+    QTreeWidgetItem* item = new QTreeWidgetItem();
+    item->setText(0, provinceInfo->getProvinceName());
+    treeWidget->addTopLevelItem(item);
+    item->setCheckState(0,Qt::Checked);
+
+    foreach (const CityInfo& cityInfo, provinceInfo->getCityInfoVector()) {
+        QTreeWidgetItem* subItem = new QTreeWidgetItem(item);
+        subItem->setText(0, cityInfo.getCityName());
+        treeWidget->addTopLevelItem(subItem);
+        subItem->setCheckState(0,Qt::Checked);
+
+        for(int i = 0; i < 5; ++i) {
+            QTreeWidgetItem* childItem = new QTreeWidgetItem(subItem);
+            childItem->setText(0, "区县 " + QString::number(i+1));
+            treeWidget->addTopLevelItem(childItem);
+            childItem->setCheckState(0,Qt::Checked);
+        }
+    }
 }
 
 void MainWindow::showTreeWidget() {
