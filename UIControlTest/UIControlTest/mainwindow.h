@@ -23,6 +23,7 @@ private slots:
     void button_treewidget_clicked();
     void button_tablewidget_clicked();
     void button_groupbox_clicked();
+    void button_tabwidget_clicked();
 
 private:
 
@@ -41,6 +42,9 @@ private:
     void initGroupBoxContainerWidget();
     void showGroupBoxContainerWidget();
 
+    void initTabWidget();
+    void showTabWidget();
+
 private:
     Ui::MainWindow *ui;
 
@@ -49,6 +53,7 @@ private:
     QWidget* treeContainerWidget;
     QWidget* tableContainerWidget;
     QWidget* groupBoxContainerWidget;
+    QWidget* tabContainerWidget;
 
 
 };

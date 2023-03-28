@@ -15,6 +15,8 @@
 #include <qcheckbox.h>
 #include <qmenu.h>
 #include <qmessagebox.h>
+#include <qtablewidget.h>
+#include "person.h"
 
 using namespace std;
 
@@ -26,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     , treeContainerWidget(nullptr)
     , tableContainerWidget(nullptr)
     , groupBoxContainerWidget(nullptr)
+    , tabContainerWidget(nullptr)
 
 {
     ui->setupUi(this);
@@ -39,6 +42,7 @@ MainWindow::~MainWindow()
     delete treeContainerWidget;
     delete tableContainerWidget;
     delete groupBoxContainerWidget;
+    delete tabContainerWidget;
 }
 
 void MainWindow::button_stackedwidget_clicked() {
@@ -66,13 +70,30 @@ void MainWindow::button_groupbox_clicked() {
     showGroupBoxContainerWidget();
 }
 
+void MainWindow::button_tabwidget_clicked() {
+     cout<<"button_tabwidget_clicked"<<endl;
+    showTabWidget();
+}
+
 void MainWindow::initStackedWidget() {
 
-    QHBoxLayout* hBoxlayout = new QHBoxLayout();
+    QHBoxLayout* mainLayout = new QHBoxLayout();
 
     stackedContainerWidget = new QWidget();
-    stackedContainerWidget->setLayout(hBoxlayout);
+    stackedContainerWidget->setLayout(mainLayout);
     stackedContainerWidget->setGeometry(this->geometry());
+
+    QPushButton* button = new QPushButton();
+    button->setText("退出");
+    connect(button,
+            &QPushButton::clicked,
+            this,
+            [&]() {
+                stackedContainerWidget->hide();
+                this->show();}
+    );
+
+    mainLayout->addWidget(button,1,Qt::AlignRight);
 
 }
 
@@ -87,11 +108,27 @@ void MainWindow::showStackedWidget() {
 
 void MainWindow::initListWidget() {
 
-    QHBoxLayout* hBoxlayout = new QHBoxLayout();
+    QVBoxLayout* mainLayout = new QVBoxLayout();
 
     listContainerWidget = new QWidget();
-    listContainerWidget->setLayout(hBoxlayout);
+    listContainerWidget->setLayout(mainLayout);
     listContainerWidget->setGeometry(this->geometry());
+    listContainerWidget->setWindowTitle("QStackedWidget控件&QStackedWidget");
+
+    QPushButton* button = new QPushButton();
+    button->setText("退出");
+    connect(button,
+            &QPushButton::clicked,
+            this,
+            [&]() {
+                listContainerWidget->hide();
+                this->show();}
+    );
+
+    mainLayout->addWidget(button,1,Qt::AlignRight);
+
+    QHBoxLayout* hBoxlayout = new QHBoxLayout();
+    mainLayout->addLayout(hBoxlayout);
 
     QListWidget* listWidget = new QListWidget();
     QStackedWidget* stackedWidget = new QStackedWidget();
@@ -104,16 +141,6 @@ void MainWindow::initListWidget() {
         QWidget* subWidget = new QWidget();
         QVBoxLayout* subWidgetMainLayout = new QVBoxLayout();
         subWidget->setLayout(subWidgetMainLayout);
-
-        QHBoxLayout* hBoxLayout = new QHBoxLayout();
-        QPushButton* button = new QPushButton();
-        button->setText("退出");
-        connect(button, &QPushButton::clicked, this,[&]() {
-            listContainerWidget->hide();
-            this->show();
-        });
-        hBoxLayout->addWidget(button,1,Qt::AlignRight);
-        subWidgetMainLayout->addLayout(hBoxLayout);
 
         QLabel* label = new QLabel(vector[i]);
         label->setStyleSheet("background-color:#ff00ff;");
@@ -145,11 +172,23 @@ void MainWindow::showListWidget() {
 }
 
 void MainWindow::initTreeWidget() {
-    QHBoxLayout* hBoxlayout = new QHBoxLayout();
+    QVBoxLayout* mainLayout = new QVBoxLayout();
 
     treeContainerWidget = new QWidget();
-    treeContainerWidget->setLayout(hBoxlayout);
+    treeContainerWidget->setLayout(mainLayout);
     treeContainerWidget->setGeometry(this->geometry());
+
+    QPushButton* button = new QPushButton();
+    button->setText("退出");
+    connect(button,
+            &QPushButton::clicked,
+            this,
+            [&]() {
+                treeContainerWidget->hide();
+                this->show();}
+    );
+
+    mainLayout->addWidget(button, 1 ,Qt::AlignRight);
 }
 
 void MainWindow::showTreeWidget() {
@@ -162,11 +201,12 @@ void MainWindow::showTreeWidget() {
 }
 
 void MainWindow::initTableWidget() {
-    QVBoxLayout* mainlayout = new QVBoxLayout();
+    QVBoxLayout* mainLayout = new QVBoxLayout();
 
     tableContainerWidget = new QWidget();
-    tableContainerWidget->setLayout(mainlayout);
+    tableContainerWidget->setLayout(mainLayout);
     tableContainerWidget->setGeometry(this->geometry());
+    tableContainerWidget->setWindowTitle("QTableWidget控件");
 
     QPushButton* button = new QPushButton();
     button->setText("退出");
@@ -178,29 +218,52 @@ void MainWindow::initTableWidget() {
                 this->show();}
     );
 
-    mainlayout->addWidget(button,1,Qt::AlignRight);
+    mainLayout->addWidget(button,1,Qt::AlignRight);
 
-    QTabWidget* tabWidget = new QTabWidget();
-    mainlayout->addWidget(tabWidget);
+    QTableWidget* tableWidget = new QTableWidget();
+    mainLayout->addWidget(tableWidget);
+    QVector<Person> persons;
 
-    QVector<QString> tabNames{"窗口选项1", "窗口选项2", "窗口选项3", "窗口选项4", "窗口选项5"};
-
-    for (int i = 0; i < tabNames.count(); ++i) {
-
-        QWidget *subWidget = new QWidget();
-        subWidget->setStyleSheet("background-color:#ff00ff;");
-        tabWidget->addTab(subWidget, tabNames[i]);
-        QVBoxLayout* subMainLayout = new QVBoxLayout();
-        subWidget->setLayout(subMainLayout);
-
-        QLabel* label = new QLabel();
-        label->setText(tabNames[i]);
-        subMainLayout->addWidget(label, 0, Qt::AlignCenter);
-
-        QPushButton* button = new QPushButton();
-        button->setText(tabNames[i]);
-        subMainLayout->addWidget(button);
+    for (int i = 0; i < 10; ++i) {
+        Person* person = new Person();
+        person->setName("tom " + QString::number(i + 1));
+        person->setAddress("北京海淀区友谊路唐家岭新城东区 " + QString::number(i + 1));
+        person->setPhone("1512345678"+ QString::number(i));
+        person->setAge(i+1);
+        persons.append(*person);
     }
+
+    tableWidget->setColumnCount(4);
+    tableWidget->setRowCount(persons.count());
+    tableWidget->setHorizontalHeaderLabels(QStringList() << "姓名" << "地址" << "手机号" << "年龄");
+    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+
+    for(int i = 0; i < persons.count(); ++i) {
+
+        QTableWidgetItem* firstItem = new QTableWidgetItem();
+        firstItem->setText(persons[i].getName());
+
+        QTableWidgetItem* secondItem = new QTableWidgetItem();
+        secondItem->setText(persons[i].getAddress());
+
+        QTableWidgetItem* thirdItem = new QTableWidgetItem();
+        thirdItem->setText(persons[i].getPhone());
+
+        QTableWidgetItem* fourthItem = new QTableWidgetItem();
+        fourthItem->setText(QString::number(persons[i].getAge()));
+
+        tableWidget->setItem(i,0, firstItem);
+        tableWidget->setItem(i,1, secondItem);
+        tableWidget->setItem(i,2, thirdItem);
+        tableWidget->setItem(i,3, fourthItem);
+        tableWidget->setRowHeight(i, 40);
+    }
+
+    tableWidget->setColumnWidth(0, 80);
+    tableWidget->setColumnWidth(1, 230);
+    tableWidget->setColumnWidth(2, 120);
+    tableWidget->setColumnWidth(3, 50);
 }
 
 void MainWindow::showTableWidget() {
@@ -214,11 +277,12 @@ void MainWindow::showTableWidget() {
 }
 
 void MainWindow::initGroupBoxContainerWidget() {
-    QVBoxLayout* mainlayout = new QVBoxLayout();
+    QVBoxLayout* mainLayout = new QVBoxLayout();
 
     groupBoxContainerWidget = new QWidget();
-    groupBoxContainerWidget->setLayout(mainlayout);
+    groupBoxContainerWidget->setLayout(mainLayout);
     groupBoxContainerWidget->setGeometry(this->geometry());
+    groupBoxContainerWidget->setWindowTitle("QGroupBox控件");
 
     QPushButton* button = new QPushButton();
     button->setText("退出");
@@ -230,7 +294,7 @@ void MainWindow::initGroupBoxContainerWidget() {
                 this->show();}
     );
 
-    mainlayout->addWidget(button,1,Qt::AlignRight);
+    mainLayout->addWidget(button,1,Qt::AlignRight);
 
     //
     QGroupBox* firstBox = new QGroupBox("单选按钮组");
@@ -244,7 +308,7 @@ void MainWindow::initGroupBoxContainerWidget() {
         firstVBoxLayout->addWidget(button);
     }
 
-    mainlayout->addWidget(firstBox);
+    mainLayout->addWidget(firstBox);
 
     //
     QGroupBox* secondBox = new QGroupBox("单选按钮组");
@@ -258,7 +322,7 @@ void MainWindow::initGroupBoxContainerWidget() {
         secondVBoxLayout->addWidget(button);
     }
 
-    mainlayout->addWidget(secondBox);
+    mainLayout->addWidget(secondBox);
     QGroupBox* thirdBox = new QGroupBox("可选普通按钮组");
     thirdBox->setCheckable(true);
     thirdBox->setChecked(true);
@@ -325,7 +389,7 @@ void MainWindow::initGroupBoxContainerWidget() {
     thirdVBoxLayout->addWidget(pushButton2, 1, Qt::AlignLeft);
     thirdVBoxLayout->addWidget(pushButton3, 1, Qt::AlignLeft);
 
-    mainlayout->addWidget(thirdBox);
+    mainLayout->addWidget(thirdBox);
 }
 
 void MainWindow::showGroupBoxContainerWidget() {
@@ -334,5 +398,58 @@ void MainWindow::showGroupBoxContainerWidget() {
     }
 
     groupBoxContainerWidget->show();
+    this->hide();
+}
+
+void MainWindow::initTabWidget() {
+
+    QVBoxLayout* mainLayout = new QVBoxLayout();
+
+    tabContainerWidget = new QWidget();
+    tabContainerWidget->setLayout(mainLayout);
+    tabContainerWidget->setGeometry(this->geometry());
+    tabContainerWidget->setWindowTitle("QTabWidget控件");
+
+    QPushButton* button = new QPushButton();
+    button->setText("退出");
+    connect(button,
+            &QPushButton::clicked,
+            this,
+            [&]() {
+                tabContainerWidget->hide();
+                this->show();}
+    );
+
+    mainLayout->addWidget(button,1,Qt::AlignRight);
+
+    QTabWidget* tabWidget = new QTabWidget();
+    mainLayout->addWidget(tabWidget);
+
+    QVector<QString> tabNames{"窗口选项1", "窗口选项2", "窗口选项3", "窗口选项4", "窗口选项5"};
+
+    for (int i = 0; i < tabNames.count(); ++i) {
+
+        QWidget *subWidget = new QWidget();
+        subWidget->setStyleSheet("background-color:#ff00ff;");
+        tabWidget->addTab(subWidget, tabNames[i]);
+        QVBoxLayout* subMainLayout = new QVBoxLayout();
+        subWidget->setLayout(subMainLayout);
+
+        QLabel* label = new QLabel();
+        label->setText(tabNames[i]);
+        subMainLayout->addWidget(label, 0, Qt::AlignCenter);
+
+        QPushButton* button = new QPushButton();
+        button->setText(tabNames[i]);
+        subMainLayout->addWidget(button);
+    }
+}
+
+void MainWindow::showTabWidget() {
+    if(nullptr == tabContainerWidget) {
+        initTabWidget();
+    }
+
+    tabContainerWidget->show();
     this->hide();
 }
