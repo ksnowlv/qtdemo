@@ -7,6 +7,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 class QListWidget;
 
+using namespace std;
+
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -47,15 +49,11 @@ private:
 private:
     Ui::MainWindow *ui;
 
-    QWidget* stackedContainerWidget;
-    QWidget* listContainerWidget;
-    QWidget* treeContainerWidget;
-    QWidget* tableContainerWidget;
-    QWidget* groupBoxContainerWidget;
-    QWidget* tabContainerWidget;
-
-    QMenu* treeWidgetMenu;
-
-
+    unique_ptr<QWidget> stackedContainerWidget;
+    unique_ptr<QWidget> listContainerWidget;
+    unique_ptr<QWidget> treeContainerWidget;
+    unique_ptr<QWidget> tableContainerWidget;
+    unique_ptr<QWidget> groupBoxContainerWidget;
+    unique_ptr<QWidget> tabContainerWidget;
 };
 #endif // MAINWINDOW_H

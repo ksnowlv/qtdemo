@@ -26,27 +26,14 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-    , stackedContainerWidget(nullptr)
-    , listContainerWidget(nullptr)
-    , treeContainerWidget(nullptr)
-    , tableContainerWidget(nullptr)
-    , groupBoxContainerWidget(nullptr)
-    , tabContainerWidget(nullptr)
-
-{
+    , ui(new Ui::MainWindow) {
     ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete stackedContainerWidget;
-    delete listContainerWidget;
-    delete treeContainerWidget;
-    delete tableContainerWidget;
-    delete groupBoxContainerWidget;
-    delete tabContainerWidget;
+
 }
 
 void MainWindow::button_stackedwidget_clicked() {
@@ -83,7 +70,7 @@ void MainWindow::initStackedWidget() {
 
     QHBoxLayout* mainLayout = new QHBoxLayout();
 
-    stackedContainerWidget = new QWidget();
+    stackedContainerWidget = make_unique<QWidget>();
     stackedContainerWidget->setLayout(mainLayout);
     stackedContainerWidget->setGeometry(this->geometry());
 
@@ -114,7 +101,7 @@ void MainWindow::initListWidget() {
 
     QVBoxLayout* mainLayout = new QVBoxLayout();
 
-    listContainerWidget = new QWidget();
+    listContainerWidget = make_unique<QWidget>();
     listContainerWidget->setLayout(mainLayout);
     listContainerWidget->setGeometry(this->geometry());
     listContainerWidget->setWindowTitle("QStackedWidget控件&QStackedWidget");
@@ -178,9 +165,10 @@ void MainWindow::showListWidget() {
 void MainWindow::initTreeWidget() {
     QVBoxLayout* mainLayout = new QVBoxLayout();
 
-    treeContainerWidget = new QWidget();
+    treeContainerWidget = make_unique<QWidget>();;
     treeContainerWidget->setLayout(mainLayout);
     treeContainerWidget->setGeometry(this->geometry());
+    treeContainerWidget->setWindowTitle("QTreeWidget控件");
 
     QPushButton* button = new QPushButton();
     button->setText("退出");
@@ -208,10 +196,9 @@ void MainWindow::initTreeWidget() {
             cout<<"item text:"
                <<item->text(0).toStdString()
                <<endl;
-
         });
 
-    treeWidgetMenu = new QMenu(treeWidget);
+    QMenu* treeWidgetMenu = new QMenu(treeWidget);
     QAction* copyAction = treeWidgetMenu->addAction("拷贝");
     connect(copyAction,
             &QAction::triggered,
@@ -308,7 +295,7 @@ void MainWindow::showTreeWidget() {
 void MainWindow::initTableWidget() {
     QVBoxLayout* mainLayout = new QVBoxLayout();
 
-    tableContainerWidget = new QWidget();
+    tableContainerWidget = make_unique<QWidget>();
     tableContainerWidget->setLayout(mainLayout);
     tableContainerWidget->setGeometry(this->geometry());
     tableContainerWidget->setWindowTitle("QTableWidget控件");
@@ -329,7 +316,7 @@ void MainWindow::initTableWidget() {
     mainLayout->addWidget(tableWidget);
     QVector<Person> persons;
 
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 50; ++i) {
         Person* person = new Person();
         person->setName("tom " + QString::number(i + 1));
         person->setAddress("北京海淀区友谊路唐家岭新城东区 " + QString::number(i + 1));
@@ -383,7 +370,7 @@ void MainWindow::showTableWidget() {
 void MainWindow::initGroupBoxContainerWidget() {
     QVBoxLayout* mainLayout = new QVBoxLayout();
 
-    groupBoxContainerWidget = new QWidget();
+    groupBoxContainerWidget = make_unique<QWidget>();;
     groupBoxContainerWidget->setLayout(mainLayout);
     groupBoxContainerWidget->setGeometry(this->geometry());
     groupBoxContainerWidget->setWindowTitle("QGroupBox控件");
@@ -509,7 +496,7 @@ void MainWindow::initTabWidget() {
 
     QVBoxLayout* mainLayout = new QVBoxLayout();
 
-    tabContainerWidget = new QWidget();
+    tabContainerWidget = make_unique<QWidget>();;
     tabContainerWidget->setLayout(mainLayout);
     tabContainerWidget->setGeometry(this->geometry());
     tabContainerWidget->setWindowTitle("QTabWidget控件");
@@ -529,7 +516,11 @@ void MainWindow::initTabWidget() {
     QTabWidget* tabWidget = new QTabWidget();
     mainLayout->addWidget(tabWidget);
 
-    QVector<QString> tabNames{"窗口选项1", "窗口选项2", "窗口选项3", "窗口选项4", "窗口选项5"};
+    QVector<QString> tabNames{"窗口选项1", "窗口选项2",
+                              "窗口选项3", "窗口选项4",
+                              "窗口选项5", "窗口选项6",
+                              "窗口选项7", "窗口选项8",
+                              "窗口选项9", "窗口选项10"};
 
     for (int i = 0; i < tabNames.count(); ++i) {
 
