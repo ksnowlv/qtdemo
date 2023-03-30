@@ -292,6 +292,27 @@ void MainWindow::showTreeWidget() {
     this->hide();
 }
 
+static const QString qssTableWidgetStyle =
+    "QTableWidget::item:hover"
+    "{\
+        background-color:rgb(92,188,227,200)"
+    "}"
+    "QTableWidget::item:selected"
+    "{\
+        background-color:#1B89A1"
+    "}"
+    "QHeaderView::section,QTableCornerButton:section"
+    "{\
+        padding:3px; margin:0px; color:#DCDCDC;  border:1px solid #242424;\
+        border-left-width:0px; border-right-width:1px; border-top-width:0px; border-bottom-width:1px;\
+        background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252); "
+    "}"
+    "QTableWidget"
+    "{\
+        background-color:white;border:none;"
+    "}";
+
+
 void MainWindow::initTableWidget() {
     QVBoxLayout* mainLayout = new QVBoxLayout();
 
@@ -313,6 +334,7 @@ void MainWindow::initTableWidget() {
     mainLayout->addWidget(button,1,Qt::AlignRight);
 
     QTableWidget* tableWidget = new QTableWidget();
+    tableWidget->setStyleSheet(qssTableWidgetStyle);
     mainLayout->addWidget(tableWidget);
     QVector<Person> persons;
 
