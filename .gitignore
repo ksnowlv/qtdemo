@@ -2,3 +2,5 @@ QStackedWidgetTest/build-QStackedWidgetTest-Desktop_arm_darwin_generic_mach_o_64
 Layout/build-Layout-Desktop_arm_darwin_generic_mach_o_64bit-Debug
 HelloQT-CMake/build-HelloQT-CMake-Desktop_arm_darwin_generic_mach_o_64bit-Debug
 UIControlTest/build-UIControlTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug
+QTNetwork/build-QTNetwork-Desktop_arm_darwin_generic_mach_o_64bit-Debug
+QThreadTest/build-QThreadTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug
