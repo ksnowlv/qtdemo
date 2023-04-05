@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
         producterthread.cpp
         consumerthread.h
         consumerthread.cpp
+        qwaitconditionthread.h
+        qwaitconditionthread.cpp
         ${TS_FILES}
 )
 
