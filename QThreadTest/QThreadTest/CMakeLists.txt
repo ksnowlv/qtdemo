@@ -23,6 +23,10 @@ set(PROJECT_SOURCES
         worker.cpp
         threadcontrolobject.h
         threadcontrolobject.cpp
+        producterthread.h
+        producterthread.cpp
+        consumerthread.h
+        consumerthread.cpp
         ${TS_FILES}
 )
 

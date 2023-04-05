@@ -66,6 +66,19 @@
      <string>QtConcurrent::run</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>110</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>生产者&amp;消费者演示</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -129,10 +142,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>handleConsumerProductor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>363</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>422</x>
+     <y>308</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>handleStartThread()</slot>
   <slot>handleStopThread()</slot>
   <slot>handleConcurrent()</slot>
+  <slot>handleConsumerProductor()</slot>
  </slots>
 </ui>
