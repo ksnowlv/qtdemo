@@ -15,7 +15,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+ public slots:
+    void handleSelectedFile();
+
 private:
     Ui::MainWindow *ui;
+    QString selectedFilePath;
 };
 #endif // MAINWINDOW_H
