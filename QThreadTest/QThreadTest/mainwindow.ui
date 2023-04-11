@@ -79,6 +79,45 @@
      <string>生产者&amp;消费者演示</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>70</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>QWaitCondition wait</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>110</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>QWaitCondition wake</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>170</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>QThreadPool</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -158,11 +197,62 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>handleWaitConditionThread()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>626</x>
+     <y>119</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>633</x>
+     <y>45</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>handleWaitConditionWake()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>672</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>675</x>
+     <y>244</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>handleThreadPool()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>273</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>handleStartThread()</slot>
   <slot>handleStopThread()</slot>
   <slot>handleConcurrent()</slot>
   <slot>handleConsumerProductor()</slot>
+  <slot>handleWaitConditionThread()</slot>
+  <slot>handleWaitConditionWake()</slot>
+  <slot>handleThreadPool()</slot>
  </slots>
 </ui>

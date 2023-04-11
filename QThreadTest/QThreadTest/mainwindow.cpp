@@ -3,11 +3,17 @@
 #include "threadcontrolobject.h"
 #include <iostream>
 #include <QSemaphore>
+#include <QWaitCondition>
+#include <QThreadPool>
 #include "consumerthread.h"
 #include "producterthread.h"
+#include "qwaitconditionthread.h"
+#include "threadpooltest.h"
 
 
 using namespace std;
+
+const int WaitConditionThreadNumber = 6;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,6 +30,15 @@ MainWindow::MainWindow(QWidget *parent)
         ui->showInfomationLabel->setText(message);
     });
     cout<<"main thread"<<this_thread::get_id()<<endl;
+
+    //waitcondition
+    waitConditionThreads = make_unique<QWaitConditionThread[]>(WaitConditionThreadNumber);
+    eventLoops = make_unique<QEventLoop[]>(WaitConditionThreadNumber);
+
+    waitCondition = make_shared<QWaitCondition>();
+
+    //threadpool
+    poolTest = make_unique<ThreadPoolTest>();
 }
 
 MainWindow::~MainWindow()
@@ -43,6 +58,8 @@ MainWindow::~MainWindow()
         consumerThread->exit();
     }
 
+
+    stopWaitConditionThread();
 }
 
 void MainWindow::handleStartThread() {
@@ -60,7 +77,6 @@ void MainWindow::handleConcurrent() {
 
 void MainWindow::handleConsumerProductor() {
 
-
     if(producterThread) {
         producterThread->exit();
     }
@@ -68,8 +84,6 @@ void MainWindow::handleConsumerProductor() {
     if(consumerThread) {
         consumerThread->exit();
     }
-
-
 
     shared_ptr<QSemaphore> producterSemaphore = make_shared<QSemaphore>(1);
     shared_ptr<QSemaphore> consumerSemaphore = make_shared<QSemaphore>(0);
@@ -80,8 +94,49 @@ void MainWindow::handleConsumerProductor() {
     consumerThread->setSemaphore(producterSemaphore, consumerSemaphore);
 
     connect(producterThread.get(), &QThread::finished, producterThread.get(), &QThread::deleteLater);
+    connect(consumerThread.get(), &QThread::finished, consumerThread.get(), &QThread::deleteLater);
 
     producterThread->start();
     consumerThread->start();
+}
+
+void MainWindow::handleWaitConditionThread() {
+
+    for (int i = 0; i < WaitConditionThreadNumber; ++i) {
+        waitConditionThreads[i].setWaitCondition(waitCondition);
+        waitConditionThreads[i].start();
+        /*cout<<"----1"<<endl;
+        connect(&waitConditionThreads[i],SIGNAL(finished()),&eventLoops[i],SLOT(quit()))*/;
+    }
+}
+
+void MainWindow::handleWaitConditionWake() {
+    waitCondition->wakeAll();
+    cout<<"wakeAll"<<endl;
+}
+
+void MainWindow::stopWaitConditionThread() {
+
+    if( nullptr != waitConditionThreads) {
+        for (int i = 0; i < WaitConditionThreadNumber; ++i) {
+            waitConditionThreads[i].setExitFlag(true);
+        }
+    }
+
+    if(nullptr != waitCondition) {
+        waitCondition->wakeAll();
+    }
+
+    if( nullptr != waitConditionThreads) {
+        for (int i = 0; i < WaitConditionThreadNumber; ++i) {
+            waitConditionThreads[i].requestInterruption();
+            waitConditionThreads[i].quit();
+            waitConditionThreads[i].wait();
+        }
+    }
+}
+
+void MainWindow::handleThreadPool() {
+    poolTest->startTask();
 }
 

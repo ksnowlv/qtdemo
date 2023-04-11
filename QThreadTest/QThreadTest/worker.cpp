@@ -18,8 +18,6 @@ void Worker::doWork() {
 
     emit workerResult(EWorkerStateStart,"---work start");
 
-
-
     for (int i = 0; i < 100; ++i) {
 
         QMutexLocker<QMutex> locker(mutex.get());

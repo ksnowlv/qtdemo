@@ -29,6 +29,10 @@ set(PROJECT_SOURCES
         consumerthread.cpp
         qwaitconditionthread.h
         qwaitconditionthread.cpp
+        threadrunnable.h
+        threadrunnable.cpp
+        threadpooltest.h
+        threadpooltest.cpp
         ${TS_FILES}
 )
 
