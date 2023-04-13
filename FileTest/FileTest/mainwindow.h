@@ -17,6 +17,9 @@ public:
 
  public slots:
     void handleSelectedFile();
+    void handleViewFileInfo();
+    void handleStreamWriteFile();
+    void handleTextWriteFile();
 
 private:
     Ui::MainWindow *ui;

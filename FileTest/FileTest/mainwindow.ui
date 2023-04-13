@@ -27,6 +27,45 @@
      <string>选择文件</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>30</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查看文件属性</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>30</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>创建QDataStream写入文件</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>30</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>创建QTextStream写入文件</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -58,8 +97,59 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>handleViewFileInfo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>219</x>
+     <y>87</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>219</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>handleTextWriteFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>589</x>
+     <y>80</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>117</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>handleStreamWriteFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>363</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>373</x>
+     <y>122</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>handleSelectedFile()</slot>
+  <slot>handleViewFileInfo()</slot>
+  <slot>handleTextWriteFile()</slot>
+  <slot>handleStreamWriteFile()</slot>
  </slots>
 </ui>
