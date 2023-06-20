@@ -7,3 +7,5 @@ QThreadTest/build-QThreadTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug
 FileTest/build-FileTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug
 build-ProcessTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug
 
+build-HelloWorld-Desktop_arm_darwin_generic_mach_o_64bit-Debug
+
