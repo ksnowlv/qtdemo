@@ -9,6 +9,7 @@ class QWaitConditionThread;
 class QWaitCondition;
 class QEventLoop;
 class ThreadPoolTest;
+class QReadWriteLockTest;
 
 using namespace std;
 
@@ -32,6 +33,8 @@ public slots:
     void handleWaitConditionThread();
     void handleWaitConditionWake();
     void handleThreadPool();
+    void handleReadWriteLockStart();
+    void handleReadWriteLockStop();
 
 private:
     void stopWaitConditionThread();
@@ -45,6 +48,7 @@ private:
      unique_ptr<QEventLoop[]> eventLoops;
     shared_ptr<QWaitCondition> waitCondition;
     unique_ptr<ThreadPoolTest> poolTest;
+    unique_ptr<QReadWriteLockTest> readWriteLockTest;
 
 };
 #endif // MAINWINDOW_H

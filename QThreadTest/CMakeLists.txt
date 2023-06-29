@@ -33,6 +33,8 @@ set(PROJECT_SOURCES
         threadrunnable.cpp
         threadpooltest.h
         threadpooltest.cpp
+        qreadwritelocktest.h
+        qreadwritelocktest.cpp
         ${TS_FILES}
 )
 

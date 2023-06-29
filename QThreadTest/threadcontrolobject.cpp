@@ -14,6 +14,7 @@ ThreadControlObject::~ThreadControlObject() {
 }
 
 void ThreadControlObject::threadStart() {
+    threadStop();
     init();
 }
 

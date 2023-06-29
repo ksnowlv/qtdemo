@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.1, 2023-04-22T19:18:35. -->
+<!-- Written by QtCreator 10.0.2, 2023-06-29T13:39:24. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{76ec4f35-24a3-4c46-9389-9e57114405f8}</value>
+  <value type="QByteArray">{67ee0eb4-8575-429b-9d40-7d7e1ab30d3f}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -28,7 +28,13 @@
      <value type="QByteArray" key="CurrentPreferences">QmlJSGlobal</value>
     </valuemap>
    </valuemap>
-   <value type="qlonglong" key="EditorConfiguration.CodeStyle.Count">2</value>
+   <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.2">
+    <value type="QString" key="language">Nim</value>
+    <valuemap type="QVariantMap" key="value">
+     <value type="QByteArray" key="CurrentPreferences">NimGlobal</value>
+    </valuemap>
+   </valuemap>
+   <value type="qlonglong" key="EditorConfiguration.CodeStyle.Count">3</value>
    <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
    <value type="bool" key="EditorConfiguration.ConstrainTooltips">false</value>
    <value type="int" key="EditorConfiguration.IndentSize">4</value>
@@ -81,24 +87,30 @@
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
     <value type="bool" key="ClangTools.UseGlobalSettings">true</value>
    </valuemap>
+   <value type="QDateTime" key="GitLab.LastRequest"></value>
+   <value type="QString" key="GitLab.LinkedId"></value>
+   <value type="QString" key="GitLab.Project"></value>
+   <value type="QString" key="GitLab.Server"></value>
   </valuemap>
  </data>
  <data>
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop (arm-darwin-generic-mach_o-64bit)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop (arm-darwin-generic-mach_o-64bit)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{d8cef4a6-a9e3-4a6a-88f4-9e507fd5d28a}</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Qt 6.5.1 for macOS</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Qt 6.5.1 for macOS</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt6.651.clang_64_kit</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="QString" key="CMake.Build.Type">Debug</value>
+    <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
     <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
 -DCMAKE_BUILD_TYPE:STRING=Debug
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{buildDir}/.qtc/package-manager/auto-setup.cmake
 -DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
@@ -106,7 +118,7 @@
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/QThreadTest/../build-QThreadTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/build-QThreadTest-Qt_6_5_1_for_macOS-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -137,8 +149,8 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
      </valuemap>
      <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">清除</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">清除</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
@@ -151,17 +163,19 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
     <value type="QString" key="CMake.Build.Type">Release</value>
+    <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
     <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
 -DCMAKE_BUILD_TYPE:STRING=Release
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{buildDir}/.qtc/package-manager/auto-setup.cmake
 -DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/QThreadTest/../build-QThreadTest-Desktop_arm_darwin_generic_mach_o_64bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/build-QThreadTest-Qt_6_5_1_for_macOS-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -190,8 +204,8 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
      </valuemap>
      <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">清除</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">清除</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
@@ -204,17 +218,19 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
     <value type="QString" key="CMake.Build.Type">RelWithDebInfo</value>
+    <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
     <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
 -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{buildDir}/.qtc/package-manager/auto-setup.cmake
 -DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/QThreadTest/../build-QThreadTest-Desktop_arm_darwin_generic_mach_o_64bit-RelWithDebInfo</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/build-QThreadTest-Qt_6_5_1_for_macOS-RelWithDebInfo</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -243,8 +259,8 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
      </valuemap>
      <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">清除</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">清除</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
@@ -257,10 +273,12 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.3">
     <value type="QString" key="CMake.Build.Type">RelWithDebInfo</value>
+    <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
     <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
 -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{buildDir}/.qtc/package-manager/auto-setup.cmake
 -DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
@@ -268,7 +286,7 @@
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/QThreadTest/../build-QThreadTest-Desktop_arm_darwin_generic_mach_o_64bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/build-QThreadTest-Qt_6_5_1_for_macOS-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -297,8 +315,8 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
      </valuemap>
      <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">清除</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">清除</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
@@ -311,17 +329,19 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.4">
     <value type="QString" key="CMake.Build.Type">MinSizeRel</value>
+    <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
     <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
 -DCMAKE_BUILD_TYPE:STRING=MinSizeRel
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{buildDir}/.qtc/package-manager/auto-setup.cmake
 -DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/QThreadTest/../build-QThreadTest-Desktop_arm_darwin_generic_mach_o_64bit-MinSizeRel</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/lvwei/Pictures/qtdemo/QThreadTest/build-QThreadTest-Qt_6_5_1_for_macOS-MinSizeRel</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -350,8 +370,8 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
      </valuemap>
      <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">清除</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">清除</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
@@ -391,7 +411,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/lvwei/Pictures/qtdemo/QThreadTest/build-QThreadTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug/QThreadTest.app/Contents/MacOS</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/lvwei/Pictures/qtdemo/QThreadTest/build-QThreadTest-Qt_6_5_1_for_macOS-Debug/QThreadTest.app/Contents/MacOS</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

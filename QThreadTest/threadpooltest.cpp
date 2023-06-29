@@ -8,7 +8,7 @@ ThreadPoolTest::ThreadPoolTest(QObject *parent)
     : QObject{parent}
 {
     pool = make_unique<QThreadPool>();
-    pool->setMaxThreadCount(2);
+    pool->setMaxThreadCount(3);
 
     runnableTasks = new ThreadRunnable[RunnableTasksNum];
 

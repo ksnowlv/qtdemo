@@ -16,5 +16,5 @@ void ThreadRunnable::run() {
 }
 
 void ThreadRunnable::revMessageFromMain(const QString& message) {
-    cout<<"子线程:"<<QThread::currentThread()<<"收到消息："<<message.toStdString()<<endl;
+    cout<<"ThreadRunnable:"<<this<<"收到消息："<<message.toStdString()<<endl;
 }

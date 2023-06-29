@@ -9,6 +9,7 @@
 #include "producterthread.h"
 #include "qwaitconditionthread.h"
 #include "threadpooltest.h"
+#include "qreadwritelocktest.h"
 
 
 using namespace std;
@@ -39,6 +40,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     //threadpool
     poolTest = make_unique<ThreadPoolTest>();
+
+    //
+    readWriteLockTest = make_unique<QReadWriteLockTest>();
 }
 
 MainWindow::~MainWindow()
@@ -60,6 +64,10 @@ MainWindow::~MainWindow()
 
 
     stopWaitConditionThread();
+
+    if (readWriteLockTest) {
+        readWriteLockTest->stop();
+    }
 }
 
 void MainWindow::handleStartThread() {
@@ -138,5 +146,13 @@ void MainWindow::stopWaitConditionThread() {
 
 void MainWindow::handleThreadPool() {
     poolTest->startTask();
+}
+
+void MainWindow::handleReadWriteLockStart() {
+    readWriteLockTest->start();
+}
+
+void MainWindow::handleReadWriteLockStop() {
+    readWriteLockTest->stop();
 }
 
