@@ -114,5 +114,3 @@ void MainWindow::httpPostRequest() {
     handleResponse(reply);
 }
 
-
-
