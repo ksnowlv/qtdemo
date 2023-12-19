@@ -13,18 +13,28 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
 
+# 添加libcurl包
+find_package(CURL REQUIRED)
+
+# 设置包含目录
+include_directories(${CURL_INCLUDE_DIR})
+
 
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        curltest.h
+        curltest.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(QTNetwork
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        curltest.h
+        curltest.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET QTNetwork APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -44,8 +54,13 @@ else()
     endif()
 endif()
 
+# 包含RapidJSON的头文件路径
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/rapidjson)
+
 target_link_libraries(QTNetwork PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(QTNetwork PRIVATE Qt${QT_VERSION_MAJOR}::Network)
+# 链接libcurl库
+target_link_libraries(QTNetwork PRIVATE Qt${QT_VERSION_MAJOR}::Core ${CURL_LIBRARY})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

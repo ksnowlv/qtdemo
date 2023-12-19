@@ -7,11 +7,18 @@
 #include <iostream>
 using namespace std;
 
+#include "curltest.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+    CurlTest * test = new CurlTest(this);
+    test->testCurlhttpGet();
+    test->testCurlHttpPost();
 }
 
 MainWindow::~MainWindow()
@@ -113,4 +120,15 @@ void MainWindow::httpPostRequest() {
     eventLoop.exec();
     handleResponse(reply);
 }
+
+void MainWindow::handleCurlGetRequestEvent() {
+
+}
+
+void MainWindow::handleCurPostRequestEvent() {
+
+}
+
+
+
 

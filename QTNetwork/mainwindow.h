@@ -24,6 +24,9 @@ public slots:
     void handleGetRequestEvent();
     void handlePostRequestEvent();
 
+    void handleCurlGetRequestEvent();
+    void handleCurPostRequestEvent();
+
 
 private:
     void httpGetRequest();
