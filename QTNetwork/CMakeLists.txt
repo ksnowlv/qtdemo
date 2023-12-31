@@ -18,7 +18,7 @@ find_package(CURL REQUIRED)
 
 # 设置包含目录
 include_directories(${CURL_INCLUDE_DIR})
-
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/rapidjson)
 
 set(PROJECT_SOURCES
         main.cpp

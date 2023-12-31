@@ -81,7 +81,7 @@ void MainWindow::handleResponse(QNetworkReply *reply) {
     reply->deleteLater();
 }
 
-static const QString ServerUrl = "https://nl-mp-gateway.taohuayuan-cq.com";
+static const QString ServerUrl = "https://nl-mp-gateway";
 
 void MainWindow::httpPostRequest() {
 
