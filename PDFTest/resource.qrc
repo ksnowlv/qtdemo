@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resource/k8s 实战案例.pdf</file>
+    </qresource>
+</RCC>
