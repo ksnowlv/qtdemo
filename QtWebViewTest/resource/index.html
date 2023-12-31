@@ -1,0 +1,33 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebChannel Test</title>
+    <script src="qrc:///resource/qwebchannel.js"></script>
+    <script>
+        var myObject = null;
+
+        new QWebChannel(qt.webChannelTransport, function (channel) {
+            myObject = channel.objects.myObject;
+            myObject.nativeMethodCalled.connect(function (message) {
+                 console.log("******Received message from native: " + message);
+                 alert("Received message from native: " + message);
+            });
+            myObject.callNativeMethod("Message from JavaScript");
+        });
+
+        function sendMessageToNative() {
+            if (myObject) {
+                myObject.showMessage("Hello from WebView!"); // 发送消息给原生代码
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+    <h1>WebChannel Test</h1>
+    <button onclick="sendMessageToNative()">Send Message to Native</button> <!-- 点击按钮发送消息给原生代码 -->
+</body>
+</html>
