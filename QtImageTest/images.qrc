@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/test.gif</file>
+        <file>images/test.jpg</file>
+        <file>images/test.webp</file>
+        <file>images/test@2x.png</file>
+        <file>images/test@3x.png</file>
+    </qresource>
+</RCC>
